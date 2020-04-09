@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "questions",
+  "info": {
+    "name": "question"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "question": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "is_approved": {
+      "type": "boolean",
+      "default": false,
+      "private": false
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "categories": {
+      "via": "questions",
+      "collection": "category"
+    }
+  }
+}

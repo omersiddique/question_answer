@@ -1,10 +1,11 @@
 import React from "react"
 import Header from "../components/header"
+import Layout from "../components/layout"
 
 export default () => (
-    <div style={{ color: `teal`}}>        
+    <Layout>     
         <Header headerText="About Us" />
-        <Header headerText="Thats Right! Its customizable!" />
         <p>This is about what we do here.</p>
-    </div>
+        <img src="https://source.unsplash.com/random/400x200" alt="" />
+    </Layout>
 )

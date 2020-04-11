@@ -1,3 +1,9 @@
 import React from "react"
+import Menu from './menu'
 
-export default props => <h1>{props.headerText}</h1>
+export default props => (
+<>
+    <Menu />
+    <h1>{props.headerText}</h1>
+</>
+)

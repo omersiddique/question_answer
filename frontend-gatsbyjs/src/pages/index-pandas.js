@@ -1,5 +1,5 @@
 import React from "react"
-import {graphql} from "gatsby"
+import {Link, graphql} from "gatsby"
 import {css} from "@emotion/core"
 import {rhythm} from "../utils/typography"
 import Layout from "../components/layout-2"
@@ -20,19 +20,27 @@ export default ({data}) => {
             />
             {data.allMarkdownRemark.edges.map( ({node})  => (
                 <div key={node.id}>
-                    <h3 css={css`
-                            margin-bottom: ${rhythm(1 / 4)};
-                        `}>
-                            {node.frontmatter.title}{" "}
-                            <span
-                                css={css`
-                                color: #bbb;
-                                `}
-                            >
-                                — {node.frontmatter.date}
-                            </span>
-                    </h3>
-                    
+                  <Link
+                    to={node.fields.slug}
+                    css={css`
+                        text-decoration: none;
+                        color: inherit;
+                      `
+                    }
+                  >
+                      <h3 css={css`
+                              margin-bottom: ${rhythm(1 / 4)};
+                          `}>
+                              {node.frontmatter.title}{" "}
+                              <span
+                                  css={css`
+                                  color: #bbb;
+                                  `}
+                              >
+                                  — {node.frontmatter.date}
+                              </span>
+                      </h3>
+                    </Link>
                     <p>{node.excerpt}</p>
                 </div>
             ))}
@@ -43,18 +51,21 @@ export default ({data}) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
+      allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+        totalCount
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+              date(formatString: "DD MMMM, YYYY")
+            }
+            excerpt
+            fields {
+              slug
+            }
           }
-          excerpt
         }
       }
     }
-  }
 `

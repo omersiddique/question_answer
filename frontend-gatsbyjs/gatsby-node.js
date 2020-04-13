@@ -15,29 +15,42 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     
 }
 
+// const makeRequest = (graphql, request) => 
+//     new Promise( (resolve,reject) => {
+//             // Query for questions to use in creating pages
+//             resolve(
+//                 graphql(request).then(result => {
+//                     if (result.errors){
+//                         reject(result.errors)
+//                     }
+//                     return result
+//                 })
+//             )
+//         }
+//     )
+
+    // Implement GATSBY API "createPages". This is called once the data layer os bootstrapped to let plugins create pages from data.
 exports.createPages = async ({graphql, actions}) => {
     const { createPage } = actions
     const result = await graphql(`
-        query{
-        allMarkdownRemark {
+        query MyQuery {
+            allStrapiQuestion {
             edges {
                 node {
-                fields {
-                    slug
-                }
+                strapiId
                 }
             }
             }
-        }
+        } 
     `)
     
-    result.data.allMarkdownRemark.edges.forEach( ({node}) => {
+    result.data.allStrapiQuestion.edges.forEach( ({node}) => {
         createPage({
-            path: node.fields.slug,
-            component: path.resolve(`./src/templates/blog-post.js`),
+            path: `/iman-shield/question/${node.strapiId}`,
+            component: path.resolve(`./src/templates/question.js`),
             context:{
                 // Data passed to context is available in page queries as GraphQL variables
-                slug: node.fields.slug,
+                id: node.strapiId,
             },
         })
     })

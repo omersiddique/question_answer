@@ -6,7 +6,9 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Hikmah Sessions`
+    title: `Hikmah Sessions`,
+    description: `The only true wisdom is in knowing you know nothing. ― Socrates`,
+    author: `Omer Siddique`,
   },
   plugins: [
     {
@@ -16,6 +18,19 @@ module.exports = {
         path: `${__dirname}/src`
       }
     },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: "http://localhost:1337",
+        contentTypes: [
+          "question",
+          "answer",
+        ],
+        queryLimit: 1000,
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,
     {

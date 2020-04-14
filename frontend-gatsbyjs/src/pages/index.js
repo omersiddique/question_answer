@@ -6,6 +6,6 @@ export default () => (
   <Layout>
     <Header headerText="Bismillah" />
     <p>Ar RahmanirRaheem</p>
-    <img src="https://source.unsplash.com/random/400x200" alt="" />
-    </Layout>
+    <img src="../img/quran.jpg" alt="" />
+  </Layout>
 )

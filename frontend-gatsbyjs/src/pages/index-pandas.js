@@ -1,7 +1,5 @@
 import React from "react"
 import {Link, graphql} from "gatsby"
-import {css} from "@emotion/core"
-import {rhythm} from "../utils/typography"
 import Layout from "../components/layout-2"
 
 
@@ -9,10 +7,7 @@ export default ({data}) => {
     return (
     <Layout>
         <div>
-        <h1 css={css`
-            display: inline-block;
-            border-bottom: 1px solid;
-          `}>Amazing Pandas Eating Things</h1>
+        <h1>Amazing Pandas Eating Things</h1>
           <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
             <img 
                 src ="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
@@ -21,22 +16,11 @@ export default ({data}) => {
             {data.allMarkdownRemark.edges.map( ({node})  => (
                 <div key={node.id}>
                   <Link
-                    to={node.fields.slug}
-                    css={css`
-                        text-decoration: none;
-                        color: inherit;
-                      `
-                    }
+                    to={node.fields.slug}                   
                   >
-                      <h3 css={css`
-                              margin-bottom: ${rhythm(1 / 4)};
-                          `}>
+                      <h3>
                               {node.frontmatter.title}{" "}
-                              <span
-                                  css={css`
-                                  color: #bbb;
-                                  `}
-                              >
+                              <span>
                                   — {node.frontmatter.date}
                               </span>
                       </h3>

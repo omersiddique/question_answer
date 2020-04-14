@@ -4,8 +4,7 @@ import Layout from "../components/layout"
 
 export default () => (
   <Layout>
-    <Header headerText="Bismillah" />
     <p>Ar RahmanirRaheem</p>
-    <img src="../img/quran.jpg" alt="" />
+    <img src = {`../../images/quran.jpg`} alt="" />
   </Layout>
 )

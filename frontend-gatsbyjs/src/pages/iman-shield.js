@@ -1,24 +1,18 @@
 import React from "react"
 import {Link, graphql} from "gatsby"
-import {css} from "@emotion/core"
 import Layout from "../components/layout"
+import Typo from "@material-ui/core/Typography"
 
 const IndexPage = ({data}) => (
     <Layout>
-        <h1>Iman Shield</h1>
-        <p css={css`font-style: italic;
-                color: inherit;`}>
-                    Post a question and have it answered by the community.</p>
+        <Typo variant="h3">Iman Shield</Typo>
+        <Typo style={{fontStyle:'italic'}}>Post a question and have it answered by the community.</Typo>
         <table>
             {data.allStrapiQuestion.edges.map( document => (
                 <tr key={document.node.strapiId}>
                     <td >
                         <p>
-                            <Link css={css`
-                                text-decoration: none;
-                                color: inherit;
-                            `
-                            }
+                            <Link                         
                             to={`/iman-shield/question/${document.node.strapiId}`}>{document.node.question}</Link>
                                 </p>
                     </td>

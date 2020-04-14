@@ -11,7 +11,7 @@ const AppBarFilled = () => (
         <Toolbar>
             <IconButton edge="start"  color="primary" aria-label="menu">
             </IconButton>
-            <Typography variant="h6" >
+            <Typography component="h6" >
                 Hikmah Sessions
             </Typography>
             <Menu />

@@ -1,25 +1,17 @@
 import React from "react"
-import {Link, graphql} from "gatsby"
+import {graphql} from "gatsby"
 import Layout from "../components/layout"
 import Typo from "@material-ui/core/Typography"
+import QuestionCard from "../components/question"
 
 const IndexPage = ({data}) => (
     <Layout>
         <Typo variant="h3">Iman Shield</Typo>
-        <Typo style={{fontStyle:'italic'}}>Post a question and have it answered by the community.</Typo>
-        <table>
-            {data.allStrapiQuestion.edges.map( document => (
-                <tr key={document.node.strapiId}>
-                    <td >
-                        <p>
-                            <Link                         
-                            to={`/iman-shield/question/${document.node.strapiId}`}>{document.node.question}</Link>
-                                </p>
-                    </td>
-                </tr>
+        <Typo style={{fontStyle:'italic'}}>Post a question and have it answered by the community.</Typo>      
+            {data.allStrapiQuestion.edges.map( document => (               
+                    <QuestionCard question={document.node.question} categories={document.node.categories} update={document.node.updated_at} key={document.node.strapiId} />                  
                 )
             )}
-        </table>
     </Layout>
 )
 
@@ -33,6 +25,11 @@ query questionQuery{
           question
           strapiId
           is_approved
+          updated_at(fromNow: true)
+          categories{
+            name
+            id
+          }
         }
       }
     }

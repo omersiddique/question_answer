@@ -1,0 +1,23 @@
+.philosophy-color{
+    background-color: blueviolet !important;
+    color: white !important;
+}
+.social-color{
+    background-color: rgb(212, 226, 6) !important;
+    color: white !important;
+}
+.ethics-color{
+    background-color: green !important;
+    color: white !important;
+}
+.philosophy-color{
+    background-color: blueviolet !important;
+    color: white !important;
+}
+.chip{
+    margin-left:0.3rem;
+}
+
+.MuiCardHeader-subheader{
+    float: right;
+}

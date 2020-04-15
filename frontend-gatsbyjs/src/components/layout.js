@@ -11,7 +11,7 @@ export default ({ children }) => (
         <Header />   
         <AppBar />
         <CssBaseline />
-        <Container maxWidth="sm" className="marginTop">
+        <Container maxWidth="md" className="marginTop">
             <Typography component="div" style={{ }}>
                 { children }
             </Typography>

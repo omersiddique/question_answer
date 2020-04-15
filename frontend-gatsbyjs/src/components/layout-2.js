@@ -1,7 +1,6 @@
 import React from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
-import { rhythm } from "../utils/typography"
 
 export default ( { children }) => {
     const data = useStaticQuery(

@@ -25,6 +25,7 @@ module.exports = {
         contentTypes: [
           "question",
           "answer",
+          "categories"
         ],
         queryLimit: 1000,
       }

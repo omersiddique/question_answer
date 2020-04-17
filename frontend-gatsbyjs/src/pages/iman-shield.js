@@ -1,37 +1,37 @@
-import React from "react"
-import {graphql} from "gatsby"
+import React, { useState, useEffect} from "react"
 import Layout from "../components/layout"
 import Typo from "@material-ui/core/Typography"
 import QuestionCard from "../components/question"
 
-const IndexPage = ({data}) => (
+const IndexPage = () => {
+    const [questions, setQuestions] = useState(false);
+
+    useEffect( () => {
+      // get data from Wordpress
+      fetch(`https://hikmahsessions.com/control-panelz/wp-json/wp/v2/question`)
+      .then(async response => {
+        let data = await response.json();
+        console.log(data);
+
+        setQuestions(data);
+      })
+    }, [])
+
+    return (
     <Layout>
         <Typo variant="h3">Iman Shield</Typo>
         <Typo style={{fontStyle:'italic'}}>Post a question and have it answered by the community.</Typo>      
-            {data.allStrapiQuestion.edges.map( document => (               
-                    <QuestionCard question={document.node.question} categories={document.node.categories} update={document.node.updated_at} key={document.node.strapiId} />                  
-                )
-            )}
+        {
+          questions ?
+            questions.map( item => (               
+              <QuestionCard title={item.title.rendered} question={item.ACF.question} categories={item.categories} update={item.date} key={item.id} />                  
+                 )
+             ) : 'Loading'
+          }
+       
     </Layout>
-)
+    )
+}
 
 export default IndexPage
 
-export const pageQuery = graphql`
-query questionQuery{
-    allStrapiQuestion {
-      edges {
-        node {
-          question
-          strapiId
-          is_approved
-          updated_at(fromNow: true)
-          categories{
-            name
-            id
-          }
-        }
-      }
-    }
-  }  
-`

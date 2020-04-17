@@ -47,13 +47,13 @@ export default function QuestionCard(props) {
     setExpanded(!expanded);
   };
 
-  function Categories() {
-    return props.categories.map( (category) => {
+  function Categories(props) {
+    return props.categories.map( () => {
         return(
         <Chip 
-              label={category.name}
-              className={`chip ${category.name.toLowerCase()}-color`}
-              key={category.id}
+              // label={category.name}
+              // className={`chip ${category.name.toLowerCase()}-color`}
+              // key={category.id}
           /> 
         )      
     })
@@ -64,15 +64,16 @@ export default function QuestionCard(props) {
       <CardHeader
         avatar={
             <React.Fragment>
-                <Categories />
+                ...
              </React.Fragment> 
         } 
-        //title="Shrimp and Chorizo Paella"
-        subheader={`question posted ${props.update}`}
+        title={`${props.title}`}  // Question Title
+        subheader={`question posted ${props.update}`} // Date Modified
       />
       <CardContent>
+        {/* Question */}
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.question}
+          {`${props.question}`}  
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

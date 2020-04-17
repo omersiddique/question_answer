@@ -31,28 +31,28 @@ exports.onCreateNode = ({node, getNode, actions}) => {
 
     // Implement GATSBY API "createPages". This is called once the data layer os bootstrapped to let plugins create pages from data.
 exports.createPages = async ({graphql, actions}) => {
-    const { createPage } = actions
-    const result = await graphql(`
-        query MyQuery {
-            allStrapiQuestion {
-            edges {
-                node {
-                strapiId
-                }
-            }
-            }
-        } 
-    `)
+    // const { createPage } = actions
+    // const result = await graphql(`
+    //     query MyQuery {
+    //         allStrapiQuestion {
+    //         edges {
+    //             node {
+    //             strapiId
+    //             }
+    //         }
+    //         }
+    //     } 
+    // `)
     
-    result.data.allStrapiQuestion.edges.forEach( ({node}) => {
-        createPage({
-            path: `/iman-shield/question/${node.strapiId}`,
-            component: path.resolve(`./src/templates/question.js`),
-            context:{
-                // Data passed to context is available in page queries as GraphQL variables
-                id: node.strapiId,
-            },
-        })
-    })
+    // result.data.allStrapiQuestion.edges.forEach( ({node}) => {
+    //     createPage({
+    //         path: `/iman-shield/question/${node.strapiId}`,
+    //         component: path.resolve(`./src/templates/question.js`),
+    //         context:{
+    //             // Data passed to context is available in page queries as GraphQL variables
+    //             id: node.strapiId,
+    //         },
+    //     })
+    // })
 }
     
